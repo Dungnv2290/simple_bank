@@ -1,0 +1,2 @@
+docker exec -it postgres12 psql -U root -d simple_bank
+docker exec -it mysql8 mysql -uroot -psecret simple_bank
