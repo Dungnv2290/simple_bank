@@ -39,4 +39,14 @@ server:
 mock:
 	mockgen --build_flags=--mod=mod -package mockdb -destination db/mock/store.go github.com/dungnguyen/simplebank/db/sqlc Store
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test server mock
+proto:
+	rm -f pb/*.go
+	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative \
+    --go-grpc_out=pb --go-grpc_opt=paths=source_relative \
+		--grpc-gateway_out=pb --grpc-gateway_opt=paths=source_relative \
+    proto/*.proto
+
+grpc_client_cli:
+	grpc-client-cli localhost:9090
+
+.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test server mock proto grpc_client_cli
