@@ -52,4 +52,7 @@ proto:
 grpc_client_cli:
 	grpc-client-cli localhost:9090
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test server mock proto grpc_client_cli
+redis:
+	docker run --name redis -p 6379:6379 -d redis:7-alpine
+
+.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 db_docs db_schema sqlc test server mock proto grpc_client_cli redis
