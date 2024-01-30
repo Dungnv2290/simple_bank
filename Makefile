@@ -41,6 +41,7 @@ server:
 
 mock:
 	mockgen --build_flags=--mod=mod -package mockdb -destination db/mock/store.go github.com/dungnguyen/simplebank/db/sqlc Store
+	mockgen --build_flags=--mod=mod -package mockwk -destination worker/mock/distributor.go github.com/dungnguyen/simplebank/worker TaskDistributor
 
 proto:
 	rm -f pb/*.go
